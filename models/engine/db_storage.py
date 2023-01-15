@@ -1,5 +1,7 @@
 #!/usr/bin/python3
+""" SQLAlchemy Database storage class """
 from os import getenv
+from sqlalchemy.orm import sessionmaker, scoped_session
 from sqlalchemy import create_engine
 from models.base_model import Base
 from models.user import User
@@ -8,6 +10,8 @@ from models.place import Place
 from models.city import City
 from models.state import State
 from models.review import Review
+from models.place import Place
+
 
 class DBStorage:
     """
@@ -69,8 +73,6 @@ class DBStorage:
         """
         create all tables and database session
         """
-        from sqlalchemy.orm import sessionmaker, scoped_session
-
         Base.metadata.create_all(self.__engine)
         Session = scoped_session(sessionmaker(bind=self.__engine, expire_on_commit=False))
         self.__session = Session()
