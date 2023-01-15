@@ -13,11 +13,13 @@ app.url_map.strict_slashes = False
 
 @app.teardown_appcontext
 def close_db_session(exception):
+    """ close storage session after each request """
     storage.close()
 
 
 @app.route('/cities_by_states')
 def get_states_list():
+    """ renders jinja2 template with states variable. """
     states = storage.all(State).values()
     states = sorted(states, key=lambda state: state.name)
     return render_template('8-cities_by_states.html', states=states)

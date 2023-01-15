@@ -24,7 +24,7 @@ def HBNB():
 @app.route('/c/<text>')
 def C_is_fun(text):
     """displays 'C' followed by text added in route"""
-    return "C {}".format(text)
+    return "C {}".format(text.replace('_', ' '))
 
 
 @app.route('/python')
@@ -42,6 +42,7 @@ def is_number(n):
 
 @app.route('/number_template/<int:n>')
 def number_template(n):
+    """ render html template """
     return render_template('5-number.html', number=n)
 
 
