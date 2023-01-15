@@ -16,7 +16,8 @@ class FileStorage:
                 if cls.__name__ == value.__class__.__name__:
                     new_dict[key] = value
             return new_dict
-        return FileStorage.__objects
+        else:
+            return FileStorage.__objects
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
@@ -62,3 +63,7 @@ class FileStorage:
             del FileStorage.__objects[key]
         else:
             return
+
+    def close(self):
+        """calls reload()"""
+        reload()
